@@ -1,0 +1,5 @@
+{
+  "name": "session-pulse",
+  "version": "0.1.0",
+  "description": "Shows Claude's next scheduled wake-up on the status line and lets Claude compact its own session when its work is done."
+}

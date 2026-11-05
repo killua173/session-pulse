@@ -1,0 +1,5 @@
+{
+  "name": "session-pulse",
+  "owner": { "name": "killua173" },
+  "plugins": [{ "name": "session-pulse", "source": "./" }]
+}
