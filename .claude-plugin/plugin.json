@@ -1,5 +1,40 @@
 {
   "name": "session-pulse",
-  "version": "0.1.0",
-  "description": "Shows Claude's next scheduled wake-up on the status line and lets Claude compact its own session when its work is done."
+  "version": "0.2.0",
+  "author": { "name": "killua173", "url": "https://github.com/killua173" },
+  "repository": "https://github.com/killua173/session-pulse",
+  "license": "MIT",
+  "description": "Keeps long unattended Claude Code sessions alive: next wake-up on the status line, heartbeat rules, back-to-back idle counting, and self-compaction.",
+  "userConfig": {
+    "heartbeatMinutes": {
+      "type": "number",
+      "title": "Longest wake-up (minutes)",
+      "description": "Wake-ups longer than this are shortened to it, and Claude is told to keep one set while work is pending (1 to 60).",
+      "default": 30
+    },
+    "idleLimit": {
+      "type": "number",
+      "title": "Idle wake-ups before stopping",
+      "description": "After this many idle wake-ups back to back, Claude writes its handoff notes, compacts and stops (1 to 10).",
+      "default": 2
+    },
+    "capWakeups": {
+      "type": "boolean",
+      "title": "Shorten long wake-ups",
+      "description": "Shorten a wake-up longer than the longest wake-up.",
+      "default": true
+    },
+    "remindOnStop": {
+      "type": "boolean",
+      "title": "Remind Claude to keep a wake-up set",
+      "description": "When a turn ends with the heartbeat on and no wake-up set, ask Claude once to set one or stop the heartbeat.",
+      "default": true
+    },
+    "rules": {
+      "type": "boolean",
+      "title": "Add the heartbeat rules to Claude's instructions",
+      "description": "Adds a short section to the system prompt explaining the wake-up and idle rules.",
+      "default": true
+    }
+  }
 }

@@ -1,5 +1,6 @@
 {
   "name": "session-pulse",
+  "description": "session-pulse: keeps long unattended Claude Code sessions alive and tidy.",
   "owner": { "name": "killua173" },
-  "plugins": [{ "name": "session-pulse", "source": "./" }]
+  "plugins": [{ "name": "session-pulse", "source": "./", "author": { "name": "killua173" } }]
 }
