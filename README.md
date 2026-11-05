@@ -55,3 +55,7 @@ Change them in `/config` (each is a row there) or in `settings.json` under `plug
 ## License
 
 MIT
+
+## Tests
+
+`claude plugin test .` runs `tests/pulse.test.ts`: the wake-up cap, back-to-back idle counting, resets (your message, real work, a finished background task), waiting on a background task, the reminder, and the options.
