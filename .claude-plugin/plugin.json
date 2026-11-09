@@ -1,10 +1,10 @@
 {
   "name": "session-pulse",
-  "version": "0.2.0",
+  "version": "0.3.0",
   "author": { "name": "killua173", "url": "https://github.com/killua173" },
   "repository": "https://github.com/killua173/session-pulse",
   "license": "MIT",
-  "description": "Keeps long unattended Claude Code sessions alive: next wake-up on the status line, heartbeat rules, back-to-back idle counting, and self-compaction.",
+  "description": "Keeps long unattended Claude Code sessions alive: next wake-up and usage on the status line, automatic wake-ups, back-to-back idle counting, a usage-limit pause that wakes after the reset, and self-compaction.",
   "userConfig": {
     "heartbeatMinutes": {
       "type": "number",
@@ -24,11 +24,41 @@
       "description": "Shorten a wake-up longer than the longest wake-up.",
       "default": true
     },
+    "autoWake": {
+      "type": "boolean",
+      "title": "Set wake-ups automatically",
+      "description": "When a turn ends with the heartbeat on and no wake-up set, session-pulse sets one of the longest wake-up itself, so a session with work never falls asleep. Idle counting still stops it.",
+      "default": true
+    },
+    "autoStart": {
+      "type": "boolean",
+      "title": "Start the heartbeat on your first message",
+      "description": "Turn the heartbeat on as soon as you write, instead of when Claude first sets a wake-up. Each wake reads the session again, so this costs usage in sessions that are just chat.",
+      "default": false
+    },
     "remindOnStop": {
       "type": "boolean",
       "title": "Remind Claude to keep a wake-up set",
-      "description": "When a turn ends with the heartbeat on and no wake-up set, ask Claude once to set one or stop the heartbeat.",
+      "description": "Only with automatic wake-ups off: when a turn ends with the heartbeat on and no wake-up set, ask Claude once to set one or stop the heartbeat.",
       "default": true
+    },
+    "usageLimitPercent": {
+      "type": "number",
+      "title": "Usage limit (percent)",
+      "description": "When the 5-hour or weekly window reaches this, Claude is told once to save its notes and stop (and to compact if the reset is far away); session-pulse wakes the session after the reset (50 to 100).",
+      "default": 95
+    },
+    "resetNearMinutes": {
+      "type": "number",
+      "title": "Reset counts as near within (minutes)",
+      "description": "A reset closer than this: Claude saves and waits without compacting. Further away: Claude also compacts (0 to 600).",
+      "default": 60
+    },
+    "resumeMinutes": {
+      "type": "number",
+      "title": "Wake after the reset (minutes)",
+      "description": "How long after a usage window resets session-pulse wakes the session (0 to 60).",
+      "default": 2
     },
     "rules": {
       "type": "boolean",
